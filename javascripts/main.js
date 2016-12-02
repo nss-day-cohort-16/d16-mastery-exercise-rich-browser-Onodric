@@ -1,5 +1,28 @@
 "use strict";
 
+let User = require('./user'),
+    Handlebars = require('hbsfy/runtime'),
+    FbThing = require('./db-interaction'),
+    toyTemplate = require('../templates/toyGrid.hbs'),
+    modalTemplate = require('../templates/toyModal.hbs');
+
+function events () {
+  //SET ALL OUR EVENTS HERE
+}
+
+function makeThisPage(dataArr){
+  let toyGrid = toyTemplate(dataArr);
+  let toyModal = modalTemplate(dataArr);
+  $('#wrapper').append(toyGrid);
+  $('#wrapper').append(toyModal);
+  events();
+}
+
+
+// FbThing.getToys(uid)
+// .then((toys)=>{
+//   makeThisPage(toys);
+// });
 
 // # Toy Consignment Shop
 

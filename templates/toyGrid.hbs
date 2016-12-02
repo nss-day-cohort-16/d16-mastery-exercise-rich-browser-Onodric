@@ -1,6 +1,6 @@
 {{#each toys}}
   {{!-- here's the card --}}
-  <div class="col-sm-6 col-md-4">
+  <div class="col-sm-6 col-md-4 toyCard" id="card--{{id}}">
     <a href="#" data-toggle="modal" data-target="#modal--{{id}}">
       <div class="thumbnail">
         <img src="{{imgUrl}}" alt="{{desc}}">
@@ -10,3 +10,4 @@
       </div>
     </a>
   </div>
+{{/each}}

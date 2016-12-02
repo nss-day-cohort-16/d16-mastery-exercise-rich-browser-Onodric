@@ -12,7 +12,7 @@ function getToys(user) {
   return new Promise(function(resolve, reject){
     $.ajax({
 // notice the songs.json. This tells firebase what key you want, and what format you need it in!      
-      url: `https://musichistorydemo-7f1ee.firebaseio.com/songs.json?orderBy="uid"&equalTo="${user}"`
+      url: `https://seventhdoctor-70e40.firebaseio.com/toys.json?orderBy="uid"&equalTo="${user}"`
     }).done(function(toyData){
       resolve(toyData);
     });
@@ -24,7 +24,7 @@ function addToy(toyFormObj) {
   console.log("  what is happening? addsong: ", toyFormObj);
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: "https://musichistorydemo-7f1ee.firebaseio.com/songs.json",
+      url: "https://seventhdoctor-70e40.firebaseio.com/toys.json",
       type: "POST",
       data: JSON.stringify(toyFormObj),
       dataType: 'json'
@@ -38,7 +38,7 @@ function deleToy(toyId) {
   console.log("  what is happening? delete: ", toyId);
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://musichistorydemo-7f1ee.firebaseio.com/songs/${toyId}.json`,
+      url: `https://seventhdoctor-70e40.firebaseio.com/toys/${toyId}.json`,
       method: "DELETE"
     }).done(function (data) {
       resolve();
@@ -50,7 +50,7 @@ function deleToy(toyId) {
 function getToy(toyId) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://musichistorydemo-7f1ee.firebaseio.com/songs/${toyId}.json`
+      url: `https://seventhdoctor-70e40.firebaseio.com/toys/${toyId}.json`
     }).done(function (toyData) {
       resolve(toyData);
     }).fail(function (error) {
@@ -62,11 +62,11 @@ function getToy(toyId) {
 
 // PUT - Update data to a specified resource. Takes two parameters.
 // USE PATCH!!!
-function editSong(toyFormObj, toyId) {
+function editToy(toyFormObj, toyId) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://musichistorydemo-7f1ee.firebaseio.com/songs/${toyId}.json`,
-      type: 'PUT',
+      url: `https://seventhdoctor-70e40.firebaseio.com/TOYs/${toyId}.json`,
+      type: 'PATCH',
       data: JSON.stringify(toyFormObj)
     }).done(function (data) {
       resolve(data);
@@ -79,5 +79,5 @@ module.exports = {
   addToy,
   getToy,
   deleToy,
-  editSong
+  editToy
 };
