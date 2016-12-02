@@ -1,0 +1,12 @@
+{{#each toys}}
+  {{!-- here's the card --}}
+  <div class="col-sm-6 col-md-4">
+    <a href="#" data-toggle="modal" data-target="#modal--{{id}}">
+      <div class="thumbnail">
+        <img src="{{imgUrl}}" alt="{{desc}}">
+        <div class="caption">
+          <h3>{{name}}</h3>
+        </div>
+      </div>
+    </a>
+  </div>
