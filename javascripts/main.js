@@ -3,11 +3,40 @@
 let User = require('./user'),
     Handlebars = require('hbsfy/runtime'),
     FbThing = require('./db-interaction'),
+// Templates
     toyTemplate = require('../templates/toyGrid.hbs'),
     modalTemplate = require('../templates/toyModal.hbs');
+// Partials
+Handlebars.registerPartial("addToy", require('../templates/partials/addToy.hbs'));
+
+let toys = [];
 
 function events () {
   //SET ALL OUR EVENTS HERE
+  $('#db-in').click(function(event){
+    User.logInGoogle();
+    FbThing.getToys()
+    .then(function(data){
+      toys = data.toys;
+      makeThisPage(toys);
+    });
+  });
+
+  $('#db-out').click(function(event){
+    User.logOut();
+  });
+
+  $('#addToy').click(()=>{
+    let newToy = {
+      "name": $('#addToyName').val(),
+      "price": $('#addToyPrice').val(),
+      "imgUrl": $('#addToyImg').val(),
+      "desc": $('#addToyDesc').val(),
+      "uid": FbThing.getUser()
+    };
+console.log("addtoy Called: ", newToy);
+    FbThing.addToy(newToy);
+  });
 }
 
 function makeThisPage(dataArr){
@@ -18,11 +47,17 @@ function makeThisPage(dataArr){
   events();
 }
 
+console.log("user.getUser: ", User.getUser());
 
-// FbThing.getToys(uid)
-// .then((toys)=>{
-//   makeThisPage(toys);
-// });
+// if(User.getUser()){
+// console.log("calling the data: ");
+  FbThing.getToys()
+  .then(function(data){
+console.log("got the data: ", data);
+    let toys = {toys: data};
+console.log("got the toys: ", toys);
+    makeThisPage(toys);
+  });
 
 // # Toy Consignment Shop
 

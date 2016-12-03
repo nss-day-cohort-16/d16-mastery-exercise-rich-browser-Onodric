@@ -8,11 +8,12 @@ require("firebase/auth");
 require("firebase/database");
 
 var config = {
-  apiKey: fbData.key,
-  authDomain: fbData.authUrl,
+  apiKey: fbData.apiKey,
+  authDomain: fbData.authDomain,
+  databaseURL: "https://thrxtoys.firebaseio.com",
 };
 
-console.log("dbCongig: ", config);
+console.log("dbConfig: ", config);
 
 firebase.initializeApp(config);
 

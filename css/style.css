@@ -43,11 +43,18 @@ body {
     margin: auto; }
 
 .toycard {
-  background: yellow;
+  background: gold;
   color: navy; }
 
 .modal {
   background: rgba(0, 191, 255, 0.8);
   color: rgba(139, 0, 0, 0.8); }
+
+#move-left {
+  margin-left: -15px; }
+
+#db-in a,
+#db-out a {
+  color: yellow; }
 
 /*# sourceMappingURL=style.css.map */

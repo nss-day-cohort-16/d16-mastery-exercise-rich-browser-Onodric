@@ -8,23 +8,40 @@ let firebase = require("./firebaseConfig");
 // DB interaction using Firebase REST API
 // ****************************************
 
+let userId;
+
 function getToys(user) {
-  return new Promise(function(resolve, reject){
-    $.ajax({
+  userId = user;
+  if(user){
+    return new Promise(function(resolve, reject){
+      $.ajax({
 // notice the songs.json. This tells firebase what key you want, and what format you need it in!      
-      url: `https://seventhdoctor-70e40.firebaseio.com/toys.json?orderBy="uid"&equalTo="${user}"`
-    }).done(function(toyData){
-      resolve(toyData);
+        url: `https://thrxtoys.firebaseio.com/toys.json?orderBy="uid"&equalTo="${user}"`
+      }).done(function(toyData){
+console.log("toyData retrieved: ", toyData);
+        resolve(toyData);
+      });
     });
-  });
+  } else {
+    return new Promise(function(resolve, reject){
+      $.ajax({
+// notice the songs.json. This tells firebase what key you want, and what format you need it in!      
+        url: `https://thrxtoys.firebaseio.com/toys.json?orderBy="uid"`
+      }).done(function(toyData){
+console.log("toyData retrieved: ", toyData);
+        resolve(toyData);
+      });
+    });    
+  }
 }
 
 // POST - Submits data to be processed to a specified resource. Takes one parameter.
 function addToy(toyFormObj) {
-  console.log("  what is happening? addsong: ", toyFormObj);
+console.log("  what is happening? addToy: ", toyFormObj);
   return new Promise(function (resolve, reject) {
+console.log("Documentation: ");
     $.ajax({
-      url: "https://seventhdoctor-70e40.firebaseio.com/toys.json",
+      url: "https://thrxtoys.firebaseio.com/toys.json",
       type: "POST",
       data: JSON.stringify(toyFormObj),
       dataType: 'json'
@@ -38,7 +55,7 @@ function deleToy(toyId) {
   console.log("  what is happening? delete: ", toyId);
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://seventhdoctor-70e40.firebaseio.com/toys/${toyId}.json`,
+      url: `https://thrxtoys.firebaseio.com/toys/${toyId}.json`,
       method: "DELETE"
     }).done(function (data) {
       resolve();
@@ -50,7 +67,7 @@ function deleToy(toyId) {
 function getToy(toyId) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://seventhdoctor-70e40.firebaseio.com/toys/${toyId}.json`
+      url: `https://thrxtoys.firebaseio.com/toys/${toyId}.json`
     }).done(function (toyData) {
       resolve(toyData);
     }).fail(function (error) {
@@ -65,8 +82,8 @@ function getToy(toyId) {
 function editToy(toyFormObj, toyId) {
   return new Promise(function (resolve, reject) {
     $.ajax({
-      url: `https://seventhdoctor-70e40.firebaseio.com/TOYs/${toyId}.json`,
-      type: 'PATCH',
+      url: `https://thrxtoys.firebaseio.com/Toys/${toyId}.json`,
+      type: 'PUT',
       data: JSON.stringify(toyFormObj)
     }).done(function (data) {
       resolve(data);

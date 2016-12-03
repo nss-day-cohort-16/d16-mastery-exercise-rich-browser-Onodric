@@ -1,6 +1,9 @@
+{{> addToy}}
+
 {{#each toys}}
   {{!-- here's the card --}}
   <div class="col-sm-6 col-md-4 toyCard" id="card--{{id}}">
+    <button type="button" class="btn btn-delete delete" id="dele--{{id}}"><span>&times;</span></button>
     <a href="#" data-toggle="modal" data-target="#modal--{{id}}">
       <div class="thumbnail">
         <img src="{{imgUrl}}" alt="{{desc}}">
