@@ -13,8 +13,6 @@ var config = {
   databaseURL: "https://thrxtoys.firebaseio.com",
 };
 
-console.log("dbConfig: ", config);
-
 firebase.initializeApp(config);
 
 module.exports = firebase;

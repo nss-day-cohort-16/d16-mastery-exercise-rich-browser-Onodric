@@ -18,3 +18,17 @@
 #db-out a {
   color: $hex-prime4;
 }
+
+.modal img {
+  max-width: 100%;
+  max-height: 425px;
+  margin: 0 auto;
+}
+
+.thumbnail {
+  height: 350px;
+}
+
+.thumbnail img {
+  max-height: 250px;
+}

@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(function(user){
 
 function logInGoogle() {
     //all firebase functions return a promise!! Add a then when called
-    return firebase.auth().signInWithPopup(provider); 
+    return firebase.auth().signInWithPopup(provider);
 }
 
 let createUser = function(userObj){

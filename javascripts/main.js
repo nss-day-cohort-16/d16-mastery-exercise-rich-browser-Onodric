@@ -9,16 +9,15 @@ let User = require('./user'),
 // Partials
 Handlebars.registerPartial("addToy", require('../templates/partials/addToy.hbs'));
 
-let toys = [];
+let toys = {};
+let user = null;
 
 function events () {
   //SET ALL OUR EVENTS HERE
   $('#db-in').click(function(event){
-    User.logInGoogle();
-    FbThing.getToys()
-    .then(function(data){
-      toys = data.toys;
-      makeThisPage(toys);
+    User.logInGoogle()
+    .then(function (data) {
+      refreshPage();
     });
   });
 
@@ -32,32 +31,48 @@ function events () {
       "price": $('#addToyPrice').val(),
       "imgUrl": $('#addToyImg').val(),
       "desc": $('#addToyDesc').val(),
-      "uid": FbThing.getUser()
+      "id": toys.toys.length,
     };
-console.log("addtoy Called: ", newToy);
-    FbThing.addToy(newToy);
+    FbThing.addToy(newToy)
+    .then(()=>{
+      makeThisPage(newToy);
+      $('#modalAddToy').modal('hide');
+    });
   });
+
+  $('.delete').click((event)=>{
+    FbThing.deleToy(event.target.id)
+    .then(()=>{
+      $(event.target).closest('.toyCard').remove();
+    });
+  });
+
+  $('.deleteModal').click((event)=>{
+    FbThing.deleToy(event.target.id)
+    .then(()=>{
+      $(event.target).closest('.toyCard').remove();
+    });
+  });
+
 }
 
-function makeThisPage(dataArr){
-  let toyGrid = toyTemplate(dataArr);
-  let toyModal = modalTemplate(dataArr);
+function makeThisPage(data){
+  let toyGrid = toyTemplate(data);
+  let toyModal = modalTemplate(data);
   $('#wrapper').append(toyGrid);
   $('#wrapper').append(toyModal);
   events();
 }
 
-console.log("user.getUser: ", User.getUser());
-
-// if(User.getUser()){
-// console.log("calling the data: ");
+let refreshPage = ()=>{
   FbThing.getToys()
   .then(function(data){
-console.log("got the data: ", data);
-    let toys = {toys: data};
-console.log("got the toys: ", toys);
+    toys = {toys: data};
     makeThisPage(toys);
   });
+};
+
+refreshPage();
 
 // # Toy Consignment Shop
 
@@ -65,24 +80,19 @@ console.log("got the toys: ", toys);
 
 // ## SASS Automation
 
-// You must use SASS to style your application. Using your automation tool of choice, set up a task to automate the transpilation of SASS to CSS for inclusion in your application.
+// DONE
 
 // ## Firebase Structure
 
-// Create a new Firebase application. There will only be one collection, named `toys`.
+// DONE
 
 // ### Toy Data
 
-// Each toy will need the following properties.
-
-// 1. Name
-// 2. Price
-// 3. Image URL
-// 4. Short description
+// DONE
 
 // ## Views
 
-// You will need 3 views in this application. You must use Handebars to create templates for each view. Use jQuery to swap the views in and out of an entry point element in `index.html` when the user chooses to visit those sections of your app. Use Browserify to modularize and compile your JS.
+// DONE
 
 // ### List all toys
 
@@ -90,11 +100,11 @@ console.log("got the toys: ", toys);
 
 // ### View individual toy details
 
-// Create a basic view that shows the toy name as a title, the toy image, and the price. Ensure there is an affordance for the user to easily get back to the list of toys.
+// DONE
 
 // ### Add / delete toy
 
-// Create a form for addding a new toy to Firebase. Make sure the form fields match the format you defined in your toys collection.  
+// DONE
 
 // You will also need to add a button to each toy that allows the user to delete it from the list and from Firebase.
 

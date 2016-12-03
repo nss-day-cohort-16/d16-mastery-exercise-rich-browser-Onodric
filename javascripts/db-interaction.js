@@ -10,42 +10,38 @@ let firebase = require("./firebaseConfig");
 
 let userId;
 
-function getToys(user) {
-  userId = user;
-  if(user){
-    return new Promise(function(resolve, reject){
-      $.ajax({
-// notice the songs.json. This tells firebase what key you want, and what format you need it in!      
-        url: `https://thrxtoys.firebaseio.com/toys.json?orderBy="uid"&equalTo="${user}"`
-      }).done(function(toyData){
-console.log("toyData retrieved: ", toyData);
-        resolve(toyData);
-      });
+let addID = function (data) {
+console.log("addID called with: ", data);
+  let tempId = Object.keys(data);
+  // let newData = Object.keys(data);
+  tempId.forEach( function(element, index) {
+    data[element].id = element;
+  });
+  return data;
+};
+
+function getToys() {
+  return new Promise(function(resolve, reject){
+    $.ajax({
+      url: `https://thrxtoys.firebaseio.com/toys.json`
+    }).done(function(toyData){
+      toyData = addID(toyData);
+console.log("toyData retrieved known user: ", toyData);
+      resolve(toyData);
     });
-  } else {
-    return new Promise(function(resolve, reject){
-      $.ajax({
-// notice the songs.json. This tells firebase what key you want, and what format you need it in!      
-        url: `https://thrxtoys.firebaseio.com/toys.json?orderBy="uid"`
-      }).done(function(toyData){
-console.log("toyData retrieved: ", toyData);
-        resolve(toyData);
-      });
-    });    
-  }
+  });
 }
 
 // POST - Submits data to be processed to a specified resource. Takes one parameter.
 function addToy(toyFormObj) {
-console.log("  what is happening? addToy: ", toyFormObj);
   return new Promise(function (resolve, reject) {
-console.log("Documentation: ");
     $.ajax({
       url: "https://thrxtoys.firebaseio.com/toys.json",
       type: "POST",
       data: JSON.stringify(toyFormObj),
       dataType: 'json'
     }).done(function (toyId) {
+console.log("added toy: ", toyId);
       resolve(toyId);
     });
   });

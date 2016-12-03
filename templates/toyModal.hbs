@@ -1,6 +1,6 @@
 {{#each toys}}
   {{!-- Here is modal block --}}
-  <div class="modal fade" tabindex="-1" role="dialog" id="modal--{{id}}">
+  <div class="modal fade toyDetail" tabindex="-1" role="dialog" id="modal--{{id}}">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,12 +8,13 @@
           <h4 class="modal-title">{{name}}</h4>
         </div>
         <div class="modal-body">
+          <img src="{{imgUrl}}" alt="{{desc}}">
           <p>{{desc}}</p>
           <h4>{{price}}</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-danger" id="modalDele--{{id}}">Delete this Toy</button>
+          <button type="button" class="btn btn-danger deleteModal" id="{{id}}">Delete this Toy</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
