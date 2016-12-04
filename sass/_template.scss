@@ -1,0 +1,93 @@
+// Include Normalize in the final CSS
+// @import 'normalize';
+// Include our fav GoogleFonts
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Permanent+Marker|Proza+Libre|Raleway');
+
+// Set up color schema
+  // Hex
+$hex-prime0: darkred;
+$hex-prime1: red;
+$hex-prime2: #aa7e39;
+$hex-prime3: gold;
+$hex-prime4: yellow;
+
+$hex-second0: navy;
+$hex-second1: blue;
+$hex-second2: deepskyblue;
+$hex-second3: cyan;
+$hex-second4: aquamarine;
+
+  // rgba
+$rgba-prime0: rgba(139,0,0,.8);
+$rgba-prime1: rgba(255,0,0,.8);
+$rgba-prime2: rgba(170,126,57,.8);
+$rgba-prime3: rgba(255,215,0,.8);
+$rgba-prime4: rgba(255,255,0,.8);
+$rgba-second0: rgba(0,0,128,.8);
+$rgba-second1: rgba(0,0,255,.8);
+$rgba-second2: rgba(0,191,255,.8);
+$rgba-second3: rgba(0,255,255,.8);
+$rgba-second4: rgba(116,255,212,.8);
+
+// Set up font families
+$hw-head-stack: 'Permanent Marker', cursive;
+$hw-body-stack: 'Amatic SC', cursive;
+$prime-stack: 'Raleway', sans-serif;
+$second-stack: 'Proza Libre', sans-serif;
+
+
+
+body {
+  width: 100%;
+  font: 1em $prime-stack;
+}
+  
+#wrapper {
+  width: 90%;
+  max-width: 1280px;
+  background: $hex-prime4;
+  height: 85vh;
+  overflow-y: auto;
+  margin: 10vh auto 5vh auto;
+
+  h1, h2, h3, h4, h5 {
+    font-family: $hw-head-stack;
+    // font-weight: bold;
+  }
+}
+
+#page-head {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 10vh;
+  background: $hex-prime0;
+  color: $hex-prime1;
+  box-shadow: inset 0 0 3em $rgba-second1;
+
+  h1 {
+    color: $hex-prime1;
+    font-size: 4em;
+    font-weight: bolder;
+    margin-bottom: -.1em;
+    margin-top: .25em;
+    text-shadow: .05em -.05em .1em $rgba-second0;
+  }
+}
+
+#page-foot {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 5vh;
+  background: $hex-prime0;
+  color: $hex-prime1;
+  box-shadow: inset 0 0 3em $rgba-second1;
+  text-align: center;
+
+  p {
+    font-weight: bold;
+    margin: auto;
+  }
+}
+

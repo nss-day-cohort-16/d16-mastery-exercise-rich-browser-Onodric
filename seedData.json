@@ -1,0 +1,18 @@
+{
+  "toys": [{
+    "name": "Steel Policeman",
+    "price": "59070.87",
+    "imgUrl": "https://s-media-cache-ak0.pinimg.com/originals/d3/27/60/d3276009c27de7261ded66d1ecd8a69b.jpg",
+    "desc": "Chase the bad guys just like in your favorite radio shows... or set a speed trap. VROOOM!"
+  }, {
+    "name": "Robots! Grab bag",
+    "price": "72487.89",
+    "imgUrl": "http://www.n2journal.com/wp-content/uploads/2012/04/N2-Journal-Billiken-vintage-toys-shop-tokyo-03.jpg",
+    "desc": "One of these fine heroic (or villianous) Automata!"
+  }, {
+    "name": "Scary Monkey",
+    "price": "3049.47",
+    "imgUrl": "https://s-media-cache-ak0.pinimg.com/564x/65/f6/07/65f6071c6384c73e2b05087ae263e350.jpg",
+    "desc": "So this is creepy"
+  }]
+}
