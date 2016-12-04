@@ -11,7 +11,6 @@ let firebase = require("./firebaseConfig");
 let userId;
 
 let addID = function (data) {
-console.log("addID called with: ", data);
   let tempId = Object.keys(data);
   // let newData = Object.keys(data);
   tempId.forEach( function(element, index) {
@@ -26,7 +25,6 @@ function getToys() {
       url: `https://thrxtoys.firebaseio.com/toys.json`
     }).done(function(toyData){
       toyData = addID(toyData);
-console.log("toyData retrieved known user: ", toyData);
       resolve(toyData);
     });
   });
@@ -41,14 +39,12 @@ function addToy(toyFormObj) {
       data: JSON.stringify(toyFormObj),
       dataType: 'json'
     }).done(function (toyId) {
-console.log("added toy: ", toyId);
       resolve(toyId);
     });
   });
 }
 
 function deleToy(toyId) {
-  console.log("  what is happening? delete: ", toyId);
   return new Promise(function (resolve, reject) {
     $.ajax({
       url: `https://thrxtoys.firebaseio.com/toys/${toyId}.json`,
